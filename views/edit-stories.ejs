@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="container">
+      <h1>User Stories <a class="btn btn-default pull-right" href="/stories">Back</a></h1>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= submit_text %> a Story</h3>
+        </div>
+        <div class="panel-body">
+          <form id="form">
+            <div class="form-group">
+              <label for="Name">Use Case Name</label>
+              <input type="text" class="form-control" name="Name" placeholder="Enter name" value="<%= story.Name %>">
+            </div>
+
+            <div class="form-group">
+              <label for="Actors">Actors</label>
+              <input type="text" class="form-control" name="Actors" placeholder="Enter actors" value="<%= story.Actors %>">
+            </div>
+
+            <div class="form-group">
+              <label for="Precondition">Precondition</label>
+              <input type="text" class="form-control" name="Precondition" placeholder="Enter a precondition" value="<%= story.Precondition %>">
+            </div>
+
+            <div class="form-group">
+              <label for="Postcondition">Postcondition</label>
+              <input type="text" class="form-control" name="Postcondition" placeholder="Enter a postcondition" value="<%= story.Postcondition %>">
+            </div>
+
+            <div class="form-group">
+              <label for="Goal">Goal</label>
+              <input type="text" class="form-control" name="Goal" placeholder="Enter a goal" value="<%= story.Goal %>">
+            </div>
+
+            <div class="form-group">
+              <label for="BasicFlow">Basic Flow</label>
+              <textarea class="form-control" rows="6" name="BasicFlow" placeholder="Enter the Basic Flow"><%= story.BasicFlow %></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="Exceptions">Exceptions</label>
+              <textarea class="form-control" rows="6" name="Exceptions" placeholder="Enter the Exceptions"><%= story.Exceptions %></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-default"><%= submit_text %></button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var submit_action = "<%= submit_action %>";
+        var form = $("#form");
+
+        form.submit(function(event) {
+          event.preventDefault();
+
+          var data = form.serializeArray();
+          data = _.object(_.pluck(data, 'name'), _.pluck(data, 'value'));
+
+          $.ajax({
+            url: submit_action,
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json'
+          }).success(function(msg) {
+            document.location = "/stories";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
