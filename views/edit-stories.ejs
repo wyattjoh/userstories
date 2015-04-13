@@ -18,12 +18,12 @@
           <form id="form">
             <div class="form-group">
               <label for="Name">Use Case Name</label>
-              <input type="text" class="form-control" name="Name" placeholder="Enter name" value="<%= story.Name %>">
+              <input type="text" class="form-control" name="Name" placeholder="Enter name" value="<%= story.Name %>" autofocus required>
             </div>
 
             <div class="form-group">
               <label for="Actors">Actors</label>
-              <input type="text" class="form-control" name="Actors" placeholder="Enter actors" value="<%= story.Actors %>">
+              <input type="text" class="form-control" name="Actors" placeholder="Enter actors" value="<%= story.Actors %>" required>
             </div>
 
             <div class="form-group">
@@ -38,12 +38,12 @@
 
             <div class="form-group">
               <label for="Goal">Goal</label>
-              <input type="text" class="form-control" name="Goal" placeholder="Enter a goal" value="<%= story.Goal %>">
+              <input type="text" class="form-control" name="Goal" placeholder="Enter a goal" value="<%= story.Goal %>" required>
             </div>
 
             <div class="form-group">
               <label for="BasicFlow">Basic Flow</label>
-              <textarea class="form-control" rows="6" name="BasicFlow" placeholder="Enter the Basic Flow"><%= story.BasicFlow %></textarea>
+              <textarea class="form-control" rows="6" name="BasicFlow" placeholder="Enter the Basic Flow" required><%= story.BasicFlow %></textarea>
             </div>
 
             <div class="form-group">
