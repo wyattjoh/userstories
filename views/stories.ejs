@@ -9,7 +9,7 @@
   <body>
     <div class="container">
 
-      <h1><a href="/stories">User Stories</a> <a class="pull-right btn btn-success" href="/stories/create">Create a Story +</a></h1>
+      <h1><a href="/stories">User Stories</a> <a class="pull-right btn btn-success" href="/stories/create?next=/stories">Create a Story +</a></h1>
 
       <div class="row">
         <div class="col-md-4">
@@ -38,7 +38,7 @@
                 <a href="#<%= story._id %>"><%= story.Name %></a>
                 <div class="btn-group pull-right" role="group">
                   <a href="/stories/update/<%= story._id %>" title="Edit story <%= story.Name %>" class="btn btn-xs btn-default">Edit</a>
-                  <a data-confirm="Are you sure you want to delete the <%= story.Name %> story?" href="/stories/delete/<%= story._id %>?next=/stories" title="Delete story <%= story.Name %>" class="btn btn-xs btn-danger btn-confirm">Delete</a>
+                  <a data-confirm="Are you sure you want to delete the <%= story.Name %> story?" href="/stories/delete/<%= story._id %>" title="Delete story <%= story.Name %>" class="btn btn-xs btn-danger btn-confirm">Delete</a>
                 </div>
               </h3>
             </div>

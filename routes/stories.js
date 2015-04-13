@@ -16,9 +16,6 @@ router.get('/', function(req, res, next) {
 
 router.get('/delete/:id', function(req, res, next) {
   var id = req.params.id;
-  var next = req.query.next;
-
-  console.log(req.params);
 
   console.log("DELETE Story({\"_id\": \"" + id + "\"})");
 
@@ -28,7 +25,7 @@ router.get('/delete/:id', function(req, res, next) {
       return res.status(500).end();
     }
 
-    res.redirect(next);
+    res.redirect("/");
   })
 });
 
@@ -41,7 +38,7 @@ router.get('/update/:id', function(req, res, next) {
       return res.status(500).end();
     }
 
-    res.render('edit-stories', {story: story, submit_text: "Update", submit_action: id});
+    res.render('edit-stories', {story: story, next: "/stories#" + id, submit_text: "Update", submit_action: id});
   });
 });
 
@@ -58,8 +55,10 @@ router.post('/update/:id', function(req, res, next) {
   });
 });
 
-router.get('/create', function(req, res, next) {
-  res.render('edit-stories', {story: {}, submit_text: "Create", submit_action: "create"});
+router.get('/create', function(req, res) {
+  var next = req.query.next;
+
+  res.render('edit-stories', {story: {}, next: next, submit_text: "Create", submit_action: "create"});
 });
 
 router.post('/create', function(req, res, next) {
@@ -71,7 +70,7 @@ router.post('/create', function(req, res, next) {
       return res.status(500).end();
     }
 
-    res.json({"status": "ok"});
+    res.json({"status": "ok", "id": story._id});
   });
 });
 

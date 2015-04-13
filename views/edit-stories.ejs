@@ -77,7 +77,11 @@
             contentType: 'application/json; charset=utf-8',
             dataType: 'json'
           }).success(function(msg) {
-            document.location = "/stories";
+            if (msg.id) {
+              document.location = "/stories#" + msg.id;
+            } else {
+              document.location = "<%= next ? next : '/stories' %>";
+            }
           });
         });
       });
